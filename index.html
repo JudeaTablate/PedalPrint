@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PedalPrint Dynamics Labs | Kinetic Chain Fusion</title>
+  
+  <!-- Tailwind CSS CDN with Custom Color Palette -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            earthy: {
+              blue: '#0EA5E9',
+              deepBlue: '#0369A1',
+              green: '#10B981',
+              forest: '#047857',
+              sage: '#84CC16',
+              darkBg: '#0F172A',
+              darkCard: '#1E293B',
+              lightBg: '#F8FAFC',
+              lightCard: '#FFFFFF'
+            }
+          },
+          animation: {
+            'spin-slow': 'spin 12s linear infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'wave': 'wave 8s linear infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            wave: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* Smooth Transitions for Theme & Interactivity */
+    * {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+    .glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-earthy-lightBg dark:bg-earthy-darkBg text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-earthy-green selection:text-white">
+
+  <!-- ==================== HEADER & NAVIGATION ==================== -->
+  <header class="sticky top-0 z-50 glass bg-white/70 dark:bg-earthy-darkBg/70 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-earthy-blue to-earthy-green flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-earthy-green/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="activity" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-earthy-deepBlue to-earthy-forest dark:from-earthy-blue dark:to-earthy-green bg-clip-text text-transparent">PedalPrint Labs</span>
+          <span class="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Kinetic Chain Fusion</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#about" class="hover:text-earthy-blue dark:hover:text-earthy-green transition-colors">About System</a>
+        <a href="#proponents" class="hover:text-earthy-blue dark:hover:text-earthy-green transition-colors">Proponents</a>
+        <a href="#tech" class="hover:text-earthy-blue dark:hover:text-earthy-green transition-colors">Technology</a>
+        <a href="#contact" class="hover:text-earthy-blue dark:hover:text-earthy-green transition-colors">Location</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <!-- Theme Switcher Button -->
+        <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-earthy-darkCard text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-all">
+          <i id="sunIcon" data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+          <i id="moonIcon" data-lucide="moon" class="w-5 h-5 block dark:hidden text-earthy-deepBlue"></i>
+        </button>
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-earthy-blue to-earthy-green text-white font-semibold text-sm shadow-md hover:opacity-90 hover:shadow-lg transition-all">
+          <span>Connect</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative overflow-hidden py-20 lg:py-28">
+    <!-- Animated background gradients -->
+    <div class="absolute top-1/4 left-10 w-72 h-72 bg-earthy-blue/20 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-earthy-green/20 rounded-full blur-3xl -z-10 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-earthy-green/30 bg-earthy-green/10 text-earthy-forest dark:text-earthy-green text-xs font-semibold mb-6">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Official Entry | Go Healthy with Taiwan 2026</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-slate-900 dark:text-white">
+          Precision Biomechanical <span class="bg-gradient-to-r from-earthy-blue to-earthy-green bg-clip-text text-transparent">Kinetic Fusion</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Bridging real-time insole plantar pressure and crank-spindle torque phase correlation to catch cycling compensation patterns before injury occurs.
+        </p>
+        
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button onclick="toggleModal('proposalModal')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-earthy-blue to-earthy-green text-white font-semibold text-sm shadow-lg hover:shadow-earthy-green/20 hover:scale-[1.02] active:scale-95 transition-all">
+            View Taiwan 2026 Proposal Draft
+          </button>
+          <a href="#proponents" class="px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-earthy-darkCard text-slate-800 dark:text-slate-200 font-semibold text-sm hover:border-earthy-blue transition-all">
+            Meet the Engineers
+          </a>
+        </div>
+
+        <!-- Metric Badges -->
+        <div class="mt-12 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800 pt-6">
+          <div>
+            <div class="text-2xl font-black text-earthy-blue">12-18 Mo</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">Target Timeline</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-earthy-green">100+</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">Rider Validation</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-earthy-blue">CCPA</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">Standard Ready</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moving Interactive Visualizer Widget -->
+      <div class="relative flex justify-center items-center">
+        <div class="w-full max-w-md p-6 rounded-3xl bg-white dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-700 shadow-2xl relative animate-float">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-earthy-green flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-earthy-green animate-ping"></span>
+              Live Signal Stream
+            </span>
+            <span class="text-xs text-slate-400">Phase Match: <strong class="text-earthy-blue">98.4%</strong></span>
+          </div>
+          
+          <!-- Animated Kinetic Wave Form -->
+          <div class="h-36 w-full bg-slate-900 rounded-xl overflow-hidden relative flex items-center justify-center border border-slate-800">
+            <svg class="w-[200%] h-full absolute top-0 left-0 animate-wave opacity-80" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z" fill="rgba(14, 165, 233, 0.2)"></path>
+              <path d="M0,0 C200,60 400,-20 600,50 C800,120 1000,20 1200,60 L1200,120 L0,120 Z" fill="rgba(16, 185, 129, 0.3)"></path>
+            </svg>
+            <div class="relative z-10 text-center">
+              <div class="text-xs text-slate-400 font-mono">Pedal Spindle Torque & Vector Insole</div>
+              <div class="text-xl font-bold font-mono text-earthy-green mt-1">Cross-Correlation Active</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Sensor Statuses -->
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Insole Pressure Map</div>
+              <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">Plantar Normal</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Crank Spindle Torque</div>
+              <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">Phase Sync OK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROPONENTS SECTION ==================== -->
+  <section id="proponents" class="py-20 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Lead Software Engineers</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">The software architects and research proponents behind the PedalPrint Dynamics System.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Proponent 1 -->
+        <div class="p-8 rounded-2xl bg-white dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-700 shadow-xl flex flex-col items-center text-center hover:border-earthy-blue transition-all group">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-earthy-blue to-earthy-green p-1 mb-6 shadow-md group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-slate-100 dark:bg-earthy-darkBg flex items-center justify-center font-bold text-2xl text-earthy-blue dark:text-earthy-green">
+              JT
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Judea Ann C. Tablate</h3>
+          <p class="text-sm text-earthy-blue font-semibold mt-1">Software Engineer / Research Proponent</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Specializing in signal processing algorithms, hardware fusion protocol design, and software architecture.</p>
+          <div class="mt-6 flex gap-3">
+            <span class="px-3 py-1 rounded-full bg-earthy-blue/10 text-earthy-blue text-xs font-medium">System Architecture</span>
+            <span class="px-3 py-1 rounded-full bg-earthy-green/10 text-earthy-green text-xs font-medium">Kinetic Algorithms</span>
+          </div>
+        </div>
+
+        <!-- Proponent 2 -->
+        <div class="p-8 rounded-2xl bg-white dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-700 shadow-xl flex flex-col items-center text-center hover:border-earthy-green transition-all group">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-earthy-green to-earthy-sage p-1 mb-6 shadow-md group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-slate-100 dark:bg-earthy-darkBg flex items-center justify-center font-bold text-2xl text-earthy-green">
+              LH
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Lana Denise R. Huertas</h3>
+          <p class="text-sm text-earthy-green font-semibold mt-1">Software Engineer / Research Proponent</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Specializing in full-stack data visualization platforms, UI/UX systems, and low-power protocol integration.</p>
+          <div class="mt-6 flex gap-3">
+            <span class="px-3 py-1 rounded-full bg-earthy-green/10 text-earthy-green text-xs font-medium">UI/UX Systems</span>
+            <span class="px-3 py-1 rounded-full bg-earthy-blue/10 text-earthy-blue text-xs font-medium">Data Visualizations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOCATION & AFFILIATION SECTION ==================== -->
+  <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 text-earthy-blue font-bold text-xs uppercase tracking-wider mb-2">
+          <i data-lucide="map-pin" class="w-4 h-4"></i> Headquarters & R&D Hub
+        </div>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">FEU Institute of Technology</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+          PedalPrint Dynamics Labs operates out of FEU Institute of Technology, leveraging state-of-the-art engineering laboratories and software research facilities in Manila, Philippines.
+        </p>
+
+        <div class="mt-8 space-y-4">
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-100 dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-800">
+            <i data-lucide="building" class="w-6 h-6 text-earthy-green shrink-0 mt-1"></i>
+            <div>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">Address</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">P. Paredes St, Sampaloc, Manila, 1008 Metro Manila, Philippines</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-100 dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-800">
+            <i data-lucide="mail" class="w-6 h-6 text-earthy-blue shrink-0 mt-1"></i>
+            <div>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">Inquiries & Partnerships</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">pedalprint@feutech.edu.ph</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Contact / Feedback Form -->
+      <div class="p-8 rounded-3xl bg-white dark:bg-earthy-darkCard border border-slate-200 dark:border-slate-700 shadow-2xl">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Get in Touch</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Interested in our research, CCPA integration, or Taiwan partnerships?</p>
+        
+        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Your Name</label>
+            <input type="text" required placeholder="e.g. Dr. Alex Vance" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:border-earthy-blue dark:focus:border-earthy-green transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+            <input type="email" required placeholder="alex@institution.org" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:border-earthy-blue dark:focus:border-earthy-green transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Message / Collaboration Note</label>
+            <textarea rows="3" required placeholder="Let us know how you would like to collaborate..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:border-earthy-blue dark:focus:border-earthy-green transition-colors"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-earthy-blue to-earthy-green text-white font-semibold text-sm hover:opacity-95 transition-all shadow-md">
+            Send Communication
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-earthy-darkBg py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <i data-lucide="cpu" class="w-4 h-4 text-earthy-green"></i>
+        <span>&copy; 2026 PedalPrint Dynamics Labs. FEU Institute of Technology. All rights reserved.</span>
+      </div>
+      <div class="flex gap-6">
+        <span>Software Engineers: Judea Ann C. Tablate & Lana Denise R. Huertas</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== PROPOSAL MODAL ==================== -->
+  <div id="proposalModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-earthy-darkCard rounded-3xl max-w-2xl w-full p-6 shadow-2xl max-h-[85vh] overflow-y-auto border border-slate-200 dark:border-slate-700">
+      <div class="flex justify-between items-center pb-4 border-b border-slate-200 dark:border-slate-700 mb-4">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="file-text" class="text-earthy-blue"></i> Proposal Overview
+        </h3>
+        <button onclick="toggleModal('proposalModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="space-y-4 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p><strong>Title:</strong> PedalPrint: A Kinetic Chain Fusion System Pairing Taiwan's Crank and Insole Engineering for Predictive Cycling Injury Prevention</p>
+        <p><strong>Target Submission:</strong> Go Healthy with Taiwan 2026</p>
+        <p><strong>Core Innovation:</strong> Cross-sensor phase correlation combining pedal spindle torque dynamics and vector smart insoles to detect compensation patterns prior to injury emergence.</p>
+        <p><strong>Target Partners:</strong> Giant Manufacturing, Merida, Dr. Foot, KMC Chain, Sun Race Sturmey-Archer, WiseChip, and CHC (Cycling Common Protocol Alliance).</p>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="toggleModal('proposalModal')" class="px-5 py-2 rounded-xl bg-earthy-blue text-white text-xs font-medium">Close Overview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPT & INTERACTION LOGIC ==================== -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Theme Toggle Functionality
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Check system or saved preference
+    if (localStorage.getItem('theme') === 'light') {
+      htmlElement.classList.remove('dark');
+    }
+
+    // Modal Control
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('hidden');
+    }
+
+    // Form Handling Simulation
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      alert('Thank you! Your inquiry has been dispatched to the PedalPrint engineering team at FEU Institute of Technology.');
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
